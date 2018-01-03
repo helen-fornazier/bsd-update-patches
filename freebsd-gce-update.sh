@@ -42,7 +42,6 @@ rm -f ${PORT_PATH}/files/patch-*
 echo "Generating new patches"
 make clean
 make extract
-make patch
 WORK_DIR=$(make -V WRKSRC)
 echo $WORK_DIR
 
