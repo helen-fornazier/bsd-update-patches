@@ -15,7 +15,7 @@ fi
 cd ${PROJECT_PATH}
 GTAG=$(git describe --abbrev=0 --tags)
 echo "Update patches against git tag ${GTAG}"
-CHANGES=$(git diff --relative --name-only ${GTAG} HEAD)
+CHANGES=$(git diff --relative --name-only ${GTAG})
 echo "Modified files:"
 echo "${CHANGES}"
 echo ""
@@ -31,6 +31,9 @@ fi
 
 echo "Updating to version ${PORT_VERSION}"
 sed -i -e "s/[0-9]\.[0-9]\.[0-9]/${PORT_VERSION}/" ${PORT_PATH}/Makefile
+
+echo "Updating to tag ${GTAG}"
+sed -i -e "s/20[0-9][0-9][0-9][0-9][0-9][0-9]/${GTAG}/" ${PORT_PATH}/Makefile
 
 echo "Updating distinfo"
 cd ${PORT_PATH}
